@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Required</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -37,21 +33,10 @@
             color: #667eea;
         }
         
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
-        }
+        h1 { color: #333; margin-bottom: 10px; font-size: 24px; }
+        p { color: #666; margin-bottom: 30px; line-height: 1.5; }
         
-        p {
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
+        .input-group { margin-bottom: 20px; }
         
         input[type="text"] {
             width: 100%;
@@ -89,10 +74,7 @@
             box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
         
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
+        button:disabled { opacity: 0.6; cursor: not-allowed; }
         
         .error-message {
             color: #e74c3c;
@@ -102,18 +84,10 @@
             transition: opacity 0.3s ease;
         }
         
-        .error-message.show {
-            opacity: 1;
-        }
+        .error-message.show { opacity: 1; }
         
-        .loading {
-            display: none;
-            margin-top: 15px;
-        }
-        
-        .loading.show {
-            display: block;
-        }
+        .loading { display: none; margin-top: 15px; }
+        .loading.show { display: block; }
         
         .spinner {
             border: 2px solid #f3f3f3;
@@ -125,10 +99,7 @@
             margin: 0 auto;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
         .github-url {
             margin-top: 20px;
@@ -141,23 +112,12 @@
             color: #666;
         }
         
-        /* Protected content styles */
-        .protected-content {
-            display: none;
-            text-align: left;
-        }
-        
-        .protected-content.show {
-            display: block;
-        }
+        .protected-content { display: none; text-align: left; }
+        .protected-content.show { display: block; }
         
         .content-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e1e5e9;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 30px; padding-bottom: 15px; border-bottom: 2px solid #e1e5e9;
         }
         
         .logout-btn {
@@ -168,12 +128,20 @@
             margin: 0;
         }
         
-        .logout-btn:hover {
-            background: #c0392b;
-        }
+        .logout-btn:hover { background: #c0392b; }
         
         .welcome-message {
             background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Admin styling */
+        .admin-message {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
             color: white;
             padding: 20px;
             border-radius: 10px;
@@ -205,15 +173,15 @@
         <!-- Configuration section -->
         <div class="github-url">
             <strong>Setup Instructions:</strong><br>
-            1. Create a txt file in your GitHub repo<br>
-            2. Add access codes (one per line)<br>
-            3. Update the GITHUB_RAW_URL below with your file's raw URL<br>
+            1. Create two txt files in your GitHub repo<br>
+            2. One for normal codes (codes.txt)<br>
+            3. One for admin codes (admin-codes.txt)<br>
             <br>
-            <strong>Current URL:</strong> <span id="currentUrl">Not configured</span>
+            <strong>Current URLs:</strong> <span id="currentUrl">Not configured</span>
         </div>
     </div>
     
-    <!-- Protected Content -->
+    <!-- Protected Content (Normal User) -->
     <div id="protectedContent" class="lock-container protected-content">
         <div class="content-header">
             <h1>🎉 Access Granted!</h1>
@@ -227,9 +195,6 @@
         
         <div style="text-align: left; line-height: 1.6; color: #333;">
             <h3 style="margin-bottom: 15px; color: #667eea;">Your Protected Content Goes Here</h3>
-            
-            <p style="margin-bottom: 15px;">This is where you would place your actual protected content. Some ideas:</p>
-            
             <ul style="margin-bottom: 20px; padding-left: 20px;">
                 <li>Private documents or files</li>
                 <li>Exclusive videos or images</li>
@@ -237,75 +202,82 @@
                 <li>Special announcements</li>
                 <li>Download links</li>
             </ul>
-            
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                <h4 style="color: #667eea; margin-bottom: 10px;">How Access Control Works:</h4>
-                <p style="font-size: 14px; margin-bottom: 10px;">Your access code is periodically verified against the GitHub file. If your code is removed from the file, you'll lose access on the next check.</p>
-                <p style="font-size: 14px;"><strong>Check interval:</strong> Every 30 seconds</p>
-            </div>
-            
-            <div style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-                <strong>⚠️ Security Note:</strong> This is a client-side implementation for basic access control. For truly sensitive content, consider server-side authentication.
-            </div>
+        </div>
+    </div>
+
+    <!-- Admin Content -->
+    <div id="adminContent" class="lock-container protected-content">
+        <div class="content-header">
+            <h1>🔑 Admin Access Granted</h1>
+            <button class="logout-btn" id="logoutBtn2">Logout</button>
+        </div>
+        <div class="admin-message">
+            <h2>Welcome Admin!</h2>
+            <p>You have unlocked administrator-only content.</p>
+        </div>
+        <div style="text-align:left;color:#333;">
+            <h3>Admin Tools</h3>
+            <ul>
+                <li>Manage members</li>
+                <li>Update access codes</li>
+                <li>Review logs</li>
+            </ul>
         </div>
     </div>
 
     <script>
-        // Configuration - UPDATE THIS URL with your GitHub raw file URL
-        const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/maskedwrrg/NON-PAY-PAYWALL-/refs/heads/main/code.txt';
-        
-        // Update the display URL
-        document.getElementById('currentUrl').textContent = GITHUB_RAW_URL;
-        
-        // Cache for access codes
+        // Config - replace with your GitHub raw URLs
+        const GITHUB_CODES_URL = 'https://raw.githubusercontent.com/youruser/yourrepo/main/codes.txt';
+        const GITHUB_ADMIN_CODES_URL = 'https://raw.githubusercontent.com/youruser/yourrepo/main/admin-codes.txt';
+
+        document.getElementById('currentUrl').textContent = `${GITHUB_CODES_URL} | ${GITHUB_ADMIN_CODES_URL}`;
+
         let validCodes = new Set();
+        let validAdminCodes = new Set();
         let currentAccessCode = null;
+        let isAdmin = false;
         let accessCheckInterval = null;
-        
-        // DOM elements
+
         const lockScreen = document.getElementById('lockScreen');
         const protectedContent = document.getElementById('protectedContent');
+        const adminContent = document.getElementById('adminContent');
         const loginForm = document.getElementById('loginForm');
         const accessCodeInput = document.getElementById('accessCode');
         const submitBtn = document.getElementById('submitBtn');
         const errorMessage = document.getElementById('errorMessage');
         const loading = document.getElementById('loading');
         const logoutBtn = document.getElementById('logoutBtn');
-        
-        // Fetch access codes from GitHub
-        async function fetchAccessCodes() {
+        const logoutBtn2 = document.getElementById('logoutBtn2');
+
+        async function fetchCodes(url) {
             try {
-                const response = await fetch(GITHUB_RAW_URL + '?t=' + Date.now()); // Cache busting
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
+                const response = await fetch(url + '?t=' + Date.now());
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const text = await response.text();
-                const codes = text.split('\n')
-                    .map(code => code.trim())
-                    .filter(code => code.length > 0);
-                
-                validCodes = new Set(codes);
-                console.log(`Loaded ${codes.length} access codes`);
-                return true;
-            } catch (error) {
-                console.error('Failed to fetch access codes:', error);
-                showError(`Failed to load access codes: ${error.message}`);
-                return false;
+                return text.split('\n').map(c => c.trim()).filter(c => c.length > 0);
+            } catch (err) {
+                showError(`Failed to load codes: ${err.message}`);
+                return [];
             }
         }
-        
-        // Show error message
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.classList.add('show');
-            setTimeout(() => {
-                errorMessage.classList.remove('show');
-            }, 5000);
+
+        async function refreshCodes() {
+            const [codes, adminCodes] = await Promise.all([
+                fetchCodes(GITHUB_CODES_URL),
+                fetchCodes(GITHUB_ADMIN_CODES_URL)
+            ]);
+            validCodes = new Set(codes);
+            validAdminCodes = new Set(adminCodes);
         }
-        
-        // Show loading state
-        function setLoading(isLoading) {
-            if (isLoading) {
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorMessage.classList.add('show');
+            setTimeout(() => errorMessage.classList.remove('show'), 3000);
+        }
+
+        function setLoading(state) {
+            if (state) {
                 loading.classList.add('show');
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Verifying...';
@@ -315,89 +287,68 @@
                 submitBtn.textContent = 'Unlock';
             }
         }
-        
-        // Grant access
-        function grantAccess() {
+
+        function grantAccess(admin = false) {
             lockScreen.style.display = 'none';
-            protectedContent.classList.add('show');
-            
-            // Start periodic access verification
-            accessCheckInterval = setInterval(checkAccess, 30000); // Check every 30 seconds
+            if (admin) {
+                adminContent.classList.add('show');
+            } else {
+                protectedContent.classList.add('show');
+            }
+            accessCheckInterval = setInterval(checkAccess, 30000);
         }
-        
-        // Revoke access
+
         function revokeAccess() {
             protectedContent.classList.remove('show');
+            adminContent.classList.remove('show');
             lockScreen.style.display = 'flex';
             currentAccessCode = null;
+            isAdmin = false;
             accessCodeInput.value = '';
-            
-            // Stop access checking
-            if (accessCheckInterval) {
-                clearInterval(accessCheckInterval);
-                accessCheckInterval = null;
-            }
+            if (accessCheckInterval) clearInterval(accessCheckInterval);
         }
-        
-        // Check if current access is still valid
+
         async function checkAccess() {
             if (!currentAccessCode) return;
-            
-            await fetchAccessCodes();
-            
-            if (!validCodes.has(currentAccessCode)) {
-                showError('Your access has been revoked');
+            await refreshCodes();
+            if (isAdmin && !validAdminCodes.has(currentAccessCode)) {
+                showError('Admin access revoked');
+                setTimeout(revokeAccess, 2000);
+            } else if (!isAdmin && !validCodes.has(currentAccessCode)) {
+                showError('Access revoked');
                 setTimeout(revokeAccess, 2000);
             }
         }
-        
-        // Handle login form submission
+
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const code = accessCodeInput.value.trim();
-            if (!code) {
-                showError('Please enter an access code');
-                return;
-            }
-            
+            if (!code) return showError('Please enter an access code');
             setLoading(true);
-            
-            // Fetch latest codes
-            const success = await fetchAccessCodes();
-            if (!success) {
-                setLoading(false);
-                return;
-            }
-            
-            // Check if code is valid
-            if (validCodes.has(code)) {
+            await refreshCodes();
+            if (validAdminCodes.has(code)) {
                 currentAccessCode = code;
-                grantAccess();
+                isAdmin = true;
+                grantAccess(true);
+            } else if (validCodes.has(code)) {
+                currentAccessCode = code;
+                isAdmin = false;
+                grantAccess(false);
             } else {
-                showError('Invalid access code');
+                showError('Invalid code');
             }
-            
             setLoading(false);
         });
-        
-        // Handle logout
+
         logoutBtn.addEventListener('click', revokeAccess);
-        
-        // Handle Enter key in input
+        logoutBtn2.addEventListener('click', revokeAccess);
+
         accessCodeInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                loginForm.dispatchEvent(new Event('submit'));
-            }
+            if (e.key === 'Enter') loginForm.dispatchEvent(new Event('submit'));
         });
-        
-        // Focus on input when page loads
-        window.addEventListener('load', () => {
-            accessCodeInput.focus();
-        });
-        
-        // Initial load of access codes (optional, for faster first login)
-        fetchAccessCodes();
+
+        window.addEventListener('load', () => accessCodeInput.focus());
+        refreshCodes();
     </script>
 </body>
 </html>
